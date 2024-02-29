@@ -10,6 +10,16 @@
     <script src="https://cdn.jsdelivr.net/npm/nfsfu234-form-validation@latest/dist/js/nfsfu234FormValidation.js"></script>
     <script src="assets/js/script.js"></script>
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6K4CJ3XC26"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-6K4CJ3XC26');
+    </script>
+
     <script> const ajaxOptions = { url: 'https://cdn.jsdelivr.net/npm/nfsfu234-form-validation@latest/package.json', RequestMethod: 'GET', }; const NFSFU234FormValidationLibrary = new NFSFU234FormValidation(); (async () => { try { 
         const response = await NFSFU234FormValidationLibrary.ajax(ajaxOptions); 
         const title = `${ response.name.toUpperCase() } - v${response.version}`; 
