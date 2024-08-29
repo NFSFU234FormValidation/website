@@ -1,0 +1,13 @@
+[
+    {
+      "category": "Getting Started",
+      "question": "What is NFSFU234FormValidation Library?",
+      "answer": "NFSFU234FormValidation is a lightweight and user-friendly JavaScript library designed for validating HTML form elements, with a special emphasis on textarea fields. It offers <b>customizable validation messages</b>, comprehensive support for required field checks, seamless inline error displays, and convenient modal error notifications. For more information, visit the <a href='/docs/getting-started' style='color: blue; text-decoration: underline dotted;'>documentation</a>."
+    },
+    {
+      "category": "Common Issues",
+      "question": "How can I handle form validation errors?",
+      "answer": "To handle form validation errors, you can use the NFSFU234FormValidation's built-in error message system. When a form submission fails, you can display error messages next to the input fields that caused the issue. This helps users understand what went wrong and how to fix it. Additionally, you can <b>customize the error messages</b> to provide more context or guidance if needed. Visit the <a href='/docs/getting-started' style='color: blue; text-decoration: underline dotted;'>validate</a> API function to find out more."
+    }
+  ]
+  
