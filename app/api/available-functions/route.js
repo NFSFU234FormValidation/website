@@ -1,8 +1,8 @@
 export async function GET(request) {
     try {
       // Make the fetch call and await the response
-    //   const response = await fetch('http://localhost/available-functions.json');
-      const response = await fetch(`http://localhost/available-functions.json?_=${new Date().getTime()}`);
+      // const response = await fetch(`http://localhost/available-functions.json?_=${new Date().getTime()}`);
+      const response = await fetch(`https://raw.githubusercontent.com/NFSFU234FormValidation/nfsfu234-form-validation/main/functions.json?_=${new Date().getTime()}`);
   
       // Check if the response is ok (status in the range 200-299)
       if (!response.ok) {

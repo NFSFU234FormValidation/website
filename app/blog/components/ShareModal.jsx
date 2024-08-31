@@ -18,19 +18,25 @@ const ShareModal = ({ title, description }) => {
 
   const readAloud = useCallback(() => {
     if (typeof window !== 'undefined') {
-      if (!isReading) {
-        const utterance = new SpeechSynthesisUtterance(document.getElementById('coreBlog').innerText);
-        utterance.onend = () => {
+      const blogElement = document.getElementById('coreBlog');
+      if (blogElement) {
+        const text = blogElement.innerText;
+        if (!isReading) {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.onend = () => {
+            setIsReading(false);
+            localStorage.setItem('isReading', 'false');
+          };
+          speechSynthesis.speak(utterance);
+          setIsReading(true);
+          localStorage.setItem('isReading', 'true');
+        } else {
+          speechSynthesis.cancel();
           setIsReading(false);
           localStorage.setItem('isReading', 'false');
-        };
-        speechSynthesis.speak(utterance);
-        setIsReading(true);
-        localStorage.setItem('isReading', 'true');
+        }
       } else {
-        speechSynthesis.cancel();
-        setIsReading(false);
-        localStorage.setItem('isReading', 'false');
+        console.error('Element with id "coreBlog" not found');
       }
     }
   }, [isReading]);
@@ -41,13 +47,15 @@ const ShareModal = ({ title, description }) => {
       if (storedReadingState === 'true') {
         readAloud();
       }
-  
+
       setShareUrl(encodeURIComponent(window.location.href));
       setShareTitle(encodeURIComponent(articleTitle));
       setShareDescription(encodeURIComponent(articleDescription));
-  
+
       return () => {
-        speechSynthesis.cancel();
+        if (typeof speechSynthesis !== 'undefined') {
+          speechSynthesis.cancel();
+        }
         localStorage.setItem('isReading', 'false');
       };
     }
