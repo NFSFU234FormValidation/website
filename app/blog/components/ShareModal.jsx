@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { FaTwitter, FaLinkedinIn, FaFacebookF, FaWhatsapp, FaRedditAlien, FaClipboard, FaVolumeUp, FaVolumeMute, FaShareAlt } from 'react-icons/fa';
 import { SiDevdotto } from 'react-icons/si';
 
@@ -16,22 +16,35 @@ const ShareModal = ({ title, description }) => {
   const [shareTitle, setShareTitle] = useState('');
   const [shareDescription, setShareDescription] = useState('');
 
+  // Ref to keep track of whether we're currently speaking
+  const isSpeakingRef = useRef(false);
+
   const readAloud = useCallback(() => {
     if (typeof window !== 'undefined') {
       const blogElement = document.getElementById('coreBlog');
       if (blogElement) {
         const text = blogElement.innerText;
-        if (!isReading) {
+
+        if (!isSpeakingRef.current) {
           const utterance = new SpeechSynthesisUtterance(text);
           utterance.onend = () => {
+            isSpeakingRef.current = false;
             setIsReading(false);
             localStorage.setItem('isReading', 'false');
           };
+          utterance.onerror = () => {
+            isSpeakingRef.current = false;
+            setIsReading(false);
+            localStorage.setItem('isReading', 'false');
+          };
+
           speechSynthesis.speak(utterance);
+          isSpeakingRef.current = true;
           setIsReading(true);
           localStorage.setItem('isReading', 'true');
         } else {
           speechSynthesis.cancel();
+          isSpeakingRef.current = false;
           setIsReading(false);
           localStorage.setItem('isReading', 'false');
         }
@@ -39,7 +52,7 @@ const ShareModal = ({ title, description }) => {
         console.error('Element with id "coreBlog" not found');
       }
     }
-  }, [isReading]);
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

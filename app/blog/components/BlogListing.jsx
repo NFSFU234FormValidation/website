@@ -157,9 +157,9 @@ const BlogListing = ({ posts, postsPerPage }) => {
       <nav className="mb-8">
         <ul className="flex space-x-4">
           <li><Link href="/blog" className="text-primary hover:underline">All Posts</Link></li>
-          <li><Link href="/blog/category/tutorials" className="text-primary hover:underline">Tutorials</Link></li>
-          <li><Link href="/blog/category/news" className="text-primary hover:underline">News</Link></li>
-          <li><Link href="/blog/category/tips" className="text-primary hover:underline">Tips & Tricks</Link></li>
+          {/* <li><Link href="/blog/category/tutorials" className="text-primary hover:underline">Tutorials</Link></li> */}
+          {/* <li><Link href="/blog/category/news" className="text-primary hover:underline">News</Link></li> */}
+          {/* <li><Link href="/blog/category/tips" className="text-primary hover:underline">Tips & Tricks</Link></li> */}
         </ul>
       </nav>
 
